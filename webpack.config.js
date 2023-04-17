@@ -33,6 +33,6 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   output: {
-    filename: "index.js",
+    filename: "[name].js",
   },
 };
