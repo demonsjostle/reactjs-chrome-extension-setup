@@ -2,10 +2,11 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 module.exports = {
-  mode: "development",
   entry: {
     popup: path.resolve("./src/popup/popup.tsx"),
     options: path.resolve("./src/options/options.tsx"),
+    background: path.resolve("./src/background/background.ts"),
+    contentScript: path.resolve("./src/contentScript/contentScript.ts"),
   },
   module: {
     rules: [
@@ -20,15 +21,13 @@ module.exports = {
       },
     ],
   },
-  devtool: "cheap-module-source-map",
   plugins: [
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve("src/static/manifest.json"),
+          from: path.resolve("src/static"),
           to: path.resolve("dist"),
         },
-        { from: path.resolve("src/static/icon.png"), to: path.resolve("dist") },
       ],
     }),
     ...getHtmlPlugins(["popup", "options"]),
