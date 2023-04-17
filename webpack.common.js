@@ -3,10 +3,11 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    popup: path.resolve("./src/popup/popup.tsx"),
+    popup: path.resolve("src/popup/index.tsx"),
     options: path.resolve("./src/options/options.tsx"),
     background: path.resolve("./src/background/background.ts"),
     contentScript: path.resolve("./src/contentScript/contentScript.ts"),
+    newTab: path.resolve("./src/tabs/index.tsx"),
   },
   module: {
     rules: [
@@ -30,7 +31,7 @@ module.exports = {
         },
       ],
     }),
-    ...getHtmlPlugins(["popup", "options"]),
+    ...getHtmlPlugins(["popup", "options", "newTab"]),
   ],
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".jsx"],
